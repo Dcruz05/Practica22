@@ -2,7 +2,7 @@ let express=require('express'); //importamos express
 const mongoose = require('mongoose'); // importamos mongoose para poder realizar la coneccion con mongodb Atlas
 
 //Rutas
-let personsRoutes = require('./routes/person');//definimos una variable para usar nuestra ruta que se encuentra en otra carpeta
+let personsRoutes = require('./src/routes/person');//definimos una variable para usar nuestra ruta que se encuentra en otra carpeta
 
 mongoose.Promise = global.Promise;
 let app=express(); //Definimos una variable para usar express
@@ -20,9 +20,8 @@ app.use('/',(req, res, next) => {
     next()
 });
 
-
 //Redireccion
-app.use(personsRoutes); // Llamamos a la variable que seleccionamos para mostrar una route (TEST)
+app.use(personsRoutes); // Llamamos a la variable que seleccionamos para nuestras rutas de persons
 
 app.listen(port,()=>{console.log("Servidor en linea")}); // Inicamos el server
 

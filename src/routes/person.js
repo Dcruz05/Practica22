@@ -23,20 +23,20 @@ router.post('/addStudent', (req, res) => { //Cuando usamos el metodo Post tambie
     persona.save().then(()=>{res.redirect('/');}); // Con este comando podemos guardar el nuevo documento en mongoDB atlas y si todo sale bien entonces nos rediecciona a index
     //res.render('displayData',{Nombre:req.body.nombre,Edad: req.body.edad, NSS: req.body.nss, TpSangre:req.body.tpSangre}); // cambiamos res.send por render para mostrar los datos en un hmtl y mandamos los datos con res.body
 })
-router.get('/findById/:id', (req, res)=>{
+router.get('/findById/:id', (req, res)=>{ // buscar por ID para mostrarnos un formulario donde pasamos la informacion de nuestro documento y la mostramos par poderla editar
     Person.findById(req.params.id).then((myPerson)=>{res.render('personUpdate',{myPerson})}).catch((err)=>{res.json({message:err});})
 })
-router.post('/updatePerson', (req, res)=>{
-    Person.findByIdAndUpdate(req.body.objId,
+router.post('/updatePerson', (req, res)=>{ //cuando presionamos el boton de modificar del formulario personsUpdate nos debe redireccionar a updatePersons por el metodo post para poder hacer los cambios desde aqui
+    Person.findByIdAndUpdate(req.body.objId, //Buscar por Id y actulizar actualizando los valores de las llaves
         {
             Nombre:req.body.nombre,
             Edad:req.body.edad,
             TpSangre:req.body.tpSangre,
             Nss:req.body.nss
         })
-        .then((data)=>{res.redirect('/')})
+        .then((data)=>{res.redirect('/')}) //Al terminar de actualizar nos redirige a index
         .catch((err)=>{
-            res.json({message: err})
+            res.json({message: err}) //Si hay error mostrar el error en un json
         });
 })
 
