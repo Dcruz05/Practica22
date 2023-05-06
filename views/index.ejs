@@ -28,8 +28,8 @@
                     <td><%=data[i].Edad%></td>
                     <td><%=data[i].TpSangre%></td>
                     <td><%=data[i].Nss%></td>
-                    <td><a class="editar-btn" href="/test">Modificar</a></td>
-                    <td><a class="eliminar-btn" href="localhost:3000/eliminar">Eliminar</a></td>
+                    <td><a class="editar-btn" href="<%= `findById/${data[i].id}` %>">Modificar</a></td>
+                    <td><a class="eliminar-btn" href="<%= `deletePerson/${data[i].id}` %>">Eliminar</a></td>
                   </tr>
             <% } %>            
         </tbody>
