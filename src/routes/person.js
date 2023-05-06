@@ -26,6 +26,18 @@ router.post('/addStudent', (req, res) => { //Cuando usamos el metodo Post tambie
 router.get('/findById/:id', (req, res)=>{
     Person.findById(req.params.id).then((myPerson)=>{res.render('personUpdate',{myPerson})}).catch((err)=>{res.json({message:err});})
 })
-
+router.post('/updatePerson', (req, res)=>{
+    Person.findByIdAndUpdate(req.body.objId,
+        {
+            Nombre:req.body.nombre,
+            Edad:req.body.edad,
+            TpSangre:req.body.tpSangre,
+            Nss:req.body.nss
+        })
+        .then((data)=>{res.redirect('/')})
+        .catch((err)=>{
+            res.json({message: err})
+        });
+})
 
 module.exports = router; //exportamos el router para poder acceder a la ruta en server.js

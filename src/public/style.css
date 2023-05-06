@@ -89,3 +89,6 @@ input[type="text"]{
     border-color: aquamarine;
     border-radius: 10px;
 }
+.readonly {
+    color: #535050;
+}
